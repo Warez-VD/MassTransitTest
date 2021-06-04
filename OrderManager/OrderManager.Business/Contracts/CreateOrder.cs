@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OrderManager.Business.Contracts
 {
@@ -14,10 +15,6 @@ namespace OrderManager.Business.Contracts
 
         string CustomerSurname { get; }
 
-        string Sku { get; }
-
-        decimal Price { get; }
-
-        int Quantity { get; }
+        IEnumerable<OrderItem> Items { get; }
     }
 }

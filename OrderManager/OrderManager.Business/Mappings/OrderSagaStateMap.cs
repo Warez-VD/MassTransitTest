@@ -1,8 +1,6 @@
 ﻿using MassTransit.NHibernateIntegration;
-using NHibernate.Cfg.MappingSchema;
+using NHibernate.Mapping.ByCode;
 using OrderManager.Business.Sagas;
-using FluentNHibernate.Mapping;
-using FluentNHibernate.Conventions;
 
 namespace OrderManager.Business.Mappings
 {
@@ -19,13 +17,11 @@ namespace OrderManager.Business.Mappings
             Property(x => x.ShippedDate);
 
             Property(x => x.Version); // If using Optimistic concurrency
-            Bag(
-                x => x.Items, 
-                c =>
-                {
-                    c.Key(k => k.Column("CorrelationId"));
-                }, 
-                r => r.OneToMany());
+            Bag(x => x.Items, c =>
+            {
+                c.Key(k => k.Column("OrderSagaStateId"));
+                c.Cascade(Cascade.All);
+            }, r => r.OneToMany());
         }
     }
 }

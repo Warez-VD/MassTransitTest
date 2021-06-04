@@ -1,6 +1,5 @@
 ﻿using System;
 using Automatonymous;
-using NHibernate;
 using OrderManager.Business.Contracts;
 using OrderManager.Business.Sagas.Entities;
 
@@ -8,11 +7,8 @@ namespace OrderManager.Business.Sagas
 {
     public class OrderStateMachine : MassTransitStateMachine<OrderSagaState>
     {
-        private readonly ISessionFactory _sessionFactory;
-
-        public OrderStateMachine(ISessionFactory sessionFactory)
+        public OrderStateMachine()
         {
-            _sessionFactory = sessionFactory;
             InstanceState(x => x.CurrentState);
 
             Event(() => CreateOrder, x => x.CorrelateById(context => context.Message.CorrelationId));
@@ -30,19 +26,17 @@ namespace OrderManager.Business.Sagas
                         context.Instance.CustomerName = context.Data.CustomerName;
                         context.Instance.CustomerSurname = context.Data.CustomerSurname;
 
-                        //var session = _sessionFactory.OpenSession();
-                        //session.Save(new OrderSagaItem()
-                        //{
-                        //    Id = Guid.NewGuid(),
-                        //    Sku = context.Data.Sku,
-                        //    Price = context.Data.Price,
-                        //    Quantity = context.Data.Quantity,
-                        //    OrderSagaStateId = context.Data.CorrelationId,
-                        //    OrderSagaState = context.Instance
-                        //});
-
-                        //session.Close();
-                        //TODO: How to handle the properties for OrderSagaItem
+                        foreach (var item in context.Data.Items)
+                        {
+                            context.Instance.Items.Add(new OrderSagaItem
+                            {
+                                Sku = item.Sku,
+                                Price = item.Price,
+                                Quantity = item.Quantity,
+                                OrderSagaStateId = context.Data.CorrelationId,
+                                OrderSagaState = context.Instance
+                            });
+                        }
                     })
                     .TransitionTo(AwaitingPacking));
 

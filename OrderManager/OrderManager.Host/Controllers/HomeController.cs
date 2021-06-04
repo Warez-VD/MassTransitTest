@@ -28,9 +28,7 @@ namespace OrderManagerHost.Controllers
                 OrderDate = model.OrderDate,
                 CustomerName = model.CustomerName,
                 CustomerSurname = model.CustomerSurname,
-                Sku = model.Sku,
-                Price = model.Price,
-                Quantity = model.Quantity
+                Items = model.Items
             });
             return Ok();
         }

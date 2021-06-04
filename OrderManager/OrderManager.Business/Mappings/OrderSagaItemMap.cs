@@ -8,15 +8,15 @@ namespace OrderManager.Business.Mappings
     {
         public OrderSagaItemMap()
         {
-            Id(x => x.Id, map => map.Generator(Generators.Native));
+            Id(x => x.Id, map => map.Generator(Generators.Identity));
             Property(x => x.Sku);
             Property(x => x.Price);
             Property(x => x.Quantity);
-            ManyToOne(x => x.OrderSagaState,
-                c =>
-                {
-                    c.Column("OrderSagaStateId");
-                });
+            ManyToOne(x => x.OrderSagaState, c =>
+            {
+                c.Column("OrderSagaStateId");
+                c.Cascade(Cascade.All);
+            });
         }
     }
 }

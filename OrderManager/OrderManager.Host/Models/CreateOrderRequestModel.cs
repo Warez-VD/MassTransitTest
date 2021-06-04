@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OrderManagerHost.Models
 {
@@ -12,10 +13,6 @@ namespace OrderManagerHost.Models
 
         public string CustomerSurname { get; set; }
 
-        public string Sku { get; set; }
-
-        public decimal Price { get; set; }
-
-        public int Quantity { get; set; }
+        public IEnumerable<OrderItemModel> Items { get; set; }
     }
 }

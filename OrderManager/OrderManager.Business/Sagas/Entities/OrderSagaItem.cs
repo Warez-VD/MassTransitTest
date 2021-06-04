@@ -4,7 +4,7 @@ namespace OrderManager.Business.Sagas.Entities
 {
     public class OrderSagaItem
     {
-        public virtual Guid Id { get; set; }
+        public virtual int Id { get; set; }
 
         public virtual string Sku { get; set; }
 

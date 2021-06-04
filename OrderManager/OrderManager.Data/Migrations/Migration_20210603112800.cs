@@ -13,13 +13,9 @@ namespace OrderManager.Data.Migrations
         public override void Up()
         {
             Create.Table("OrderSagaItems")
-                .WithColumn("Id").AsGuid().PrimaryKey()
+                .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                 .WithColumn("Sku").AsString().NotNullable()
-                .WithColumn("OrderSagaStateId").AsGuid();
-
-            Create.ForeignKey() // You can give the FK a name or just let Fluent Migrator default to one
-                .FromTable("OrderSagaItems").ForeignColumn("OrderSagaStateId")
-                .ToTable("OrderSagaState").PrimaryColumn("CorrelationId");
+                .WithColumn("OrderSagaStateId").AsGuid().ForeignKey("OrderSagaState", "CorrelationId");
         }
     }
 }

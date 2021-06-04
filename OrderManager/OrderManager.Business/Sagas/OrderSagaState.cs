@@ -13,7 +13,7 @@ namespace OrderManager.Business.Sagas
 
         public string CurrentState { get; set; }
 
-        public int Version { get; set; }
+        public virtual int Version { get; set; }
 
         public string OrderNumber { get; set; }
 

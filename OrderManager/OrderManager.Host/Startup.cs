@@ -109,8 +109,8 @@ namespace OrderManagerHost
 
             var scope = app.ApplicationServices.CreateScope();
             var runner = scope.ServiceProvider.GetService<IMigrationRunner>();
-            runner.ListMigrations();
-            runner.MigrateUp();
+            //runner.ListMigrations();
+            //runner.MigrateUp();
         }
     }
 }
