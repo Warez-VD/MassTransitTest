@@ -1,4 +1,5 @@
 ﻿using System;
+using OrderManager.Business.Enums;
 
 namespace OrderManager.Business.Contracts
 {
@@ -6,6 +7,6 @@ namespace OrderManager.Business.Contracts
     {
         Guid CorrelationId { get; }
 
-        string State { get; }
+        OrderStatusType State { get; }
     }
 }

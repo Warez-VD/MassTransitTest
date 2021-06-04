@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using OrderManager.Business.Contracts;
+using OrderManager.Business.Enums;
 using OrderManagerHost.Models;
 
 namespace OrderManagerHost.Controllers
@@ -34,7 +35,7 @@ namespace OrderManagerHost.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> OrderStatusChange(Guid correlationId, string state)
+        public async Task<IActionResult> OrderStatusChange(Guid correlationId, OrderStatusType state)
         {
             await _publishEndpoint.Publish<OrderStatusChange>(new
             {

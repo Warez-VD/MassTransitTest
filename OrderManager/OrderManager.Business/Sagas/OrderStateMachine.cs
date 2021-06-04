@@ -1,6 +1,7 @@
 ﻿using System;
 using Automatonymous;
 using OrderManager.Business.Contracts;
+using OrderManager.Business.Enums;
 using OrderManager.Business.Sagas.Entities;
 
 namespace OrderManager.Business.Sagas
@@ -41,7 +42,7 @@ namespace OrderManager.Business.Sagas
                     .TransitionTo(AwaitingPacking));
 
             During(AwaitingPacking,
-                When(OrderStatusChange, context => context.Data.State == "Packed")
+                When(OrderStatusChange, context => context.Data.State == OrderStatusType.Packed)
                     .Then(context =>
                     {
                         context.Instance.UpdateDate = DateTime.Now;
