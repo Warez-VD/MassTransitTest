@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Reflection;
 using MassTransit;
 using MassTransit.NHibernateIntegration;
 using Microsoft.AspNetCore.Builder;
@@ -5,11 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FluentMigrator.Runner;
-using System.Reflection;
 using Microsoft.OpenApi.Models;
 using OrderManager.Business.Sagas;
-using System.Linq;
 using NHibernate.Mapping.ByCode.Conformist;
 using OrderManager.Business.Observers;
 
@@ -38,14 +37,6 @@ namespace OrderManagerHost
                     Version = "1.0"
                 });
             });
-
-            services
-                .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    .AddSqlServer2016()
-                    .WithGlobalConnectionString(ConnectionString)
-                    .ScanIn(Assembly.Load("OrderManager.Data")).For.Migrations())
-                .AddLogging(lb => lb.AddFluentMigratorConsole());
 
             var mappings = Assembly.Load("OrderManager.Business")
                 .GetTypes()
@@ -106,11 +97,6 @@ namespace OrderManagerHost
             {
                 endpoints.MapControllers();
             });
-
-            var scope = app.ApplicationServices.CreateScope();
-            var runner = scope.ServiceProvider.GetService<IMigrationRunner>();
-            //runner.ListMigrations();
-            //runner.MigrateUp();
         }
     }
 }

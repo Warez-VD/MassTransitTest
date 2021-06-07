@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using MassTransit;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,9 +9,6 @@ using OrderManager.Business.Contracts;
 using OrderManager.Business.Enums;
 using OrderManager.Business.Sagas;
 using OrderManager.Tests.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace OrderManager.Tests
 {
