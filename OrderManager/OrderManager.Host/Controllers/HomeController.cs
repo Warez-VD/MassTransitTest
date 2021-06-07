@@ -40,7 +40,8 @@ namespace OrderManagerHost.Controllers
             await _publishEndpoint.Publish<OrderStatusChange>(new
             {
                 CorrelationId = correlationId,
-                State = state
+                State = state,
+                UpdateDate = DateTime.Now
             });
 
             return Ok();
@@ -52,7 +53,8 @@ namespace OrderManagerHost.Controllers
             await _publishEndpoint.Publish<PackOrder>(new
             {
                 CorrelationId = correlationId,
-                ShipDate = shipDate
+                ShipDate = shipDate,
+                UpdateDate = DateTime.Now
             });
 
             return Ok();

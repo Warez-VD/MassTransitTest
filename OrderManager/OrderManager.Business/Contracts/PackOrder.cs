@@ -7,5 +7,7 @@ namespace OrderManager.Business.Contracts
         Guid CorrelationId { get; }
 
         DateTime? ShipDate { get; }
+
+        DateTime UpdateDate { get; }
     }
 }

@@ -45,7 +45,7 @@ namespace OrderManager.Business.Sagas
                 When(OrderStatusChange, context => context.Data.State == OrderStatusType.Packed)
                     .Then(context =>
                     {
-                        context.Instance.UpdateDate = DateTime.Now;
+                        context.Instance.UpdateDate = context.Data.UpdateDate;
                     })
                     .TransitionTo(Packed),
                 Ignore(PackOrder));
@@ -54,7 +54,7 @@ namespace OrderManager.Business.Sagas
                 When(PackOrder)
                     .Then(context =>
                     {
-                        context.Instance.UpdateDate = DateTime.Now;
+                        context.Instance.UpdateDate = context.Data.UpdateDate;
                         context.Instance.ShippedDate = context.Data.ShipDate;
                     })
                     .TransitionTo(Shipped),

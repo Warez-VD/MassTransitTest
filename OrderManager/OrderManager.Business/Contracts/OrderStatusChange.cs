@@ -8,5 +8,7 @@ namespace OrderManager.Business.Contracts
         Guid CorrelationId { get; }
 
         OrderStatusType State { get; }
+
+        DateTime UpdateDate { get; }
     }
 }
