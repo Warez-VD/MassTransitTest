@@ -1,6 +1,6 @@
 using System;
 
-namespace OrderManagerHost.Models
+namespace OrderManager.WebApi.Models
 {
     public class ErrorViewModel
     {

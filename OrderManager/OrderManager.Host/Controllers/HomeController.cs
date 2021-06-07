@@ -4,9 +4,9 @@ using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using OrderManager.Business.Contracts;
 using OrderManager.Business.Enums;
-using OrderManagerHost.Models;
+using OrderManager.WebApi.Models;
 
-namespace OrderManagerHost.Controllers
+namespace OrderManager.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

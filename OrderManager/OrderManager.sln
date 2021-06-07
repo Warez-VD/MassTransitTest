@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagerHost", "OrderManager.Host\OrderManagerHost.csproj", "{5B7BFEC7-BE7E-4C6D-BC20-6D10D0330BF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManager.WebApi", "OrderManager.Host\OrderManager.WebApi.csproj", "{5B7BFEC7-BE7E-4C6D-BC20-6D10D0330BF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManager.Business", "OrderManager.Business\OrderManager.Business.csproj", "{E8C711A2-0662-4814-AE83-2899FD141BA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManager.Tests", "OrderManager.Tests\OrderManager.Tests.csproj", "{0BB5E97C-F145-4C01-AC75-EA759B0826C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManager.Tests", "OrderManager.Tests\OrderManager.Tests.csproj", "{0BB5E97C-F145-4C01-AC75-EA759B0826C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManager.Migrations.Runner", "OrderManager.Migrations.Runner\OrderManager.Migrations.Runner.csproj", "{8FFBC202-E649-4B68-A39B-17A8E234A4FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManager.Migrations.Runner", "OrderManager.Migrations.Runner\OrderManager.Migrations.Runner.csproj", "{8FFBC202-E649-4B68-A39B-17A8E234A4FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagerHost", "OrderManagerHost\OrderManagerHost.csproj", "{81CE0EF1-0741-48ED-843A-C5716DFE3D58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8FFBC202-E649-4B68-A39B-17A8E234A4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FFBC202-E649-4B68-A39B-17A8E234A4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FFBC202-E649-4B68-A39B-17A8E234A4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81CE0EF1-0741-48ED-843A-C5716DFE3D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81CE0EF1-0741-48ED-843A-C5716DFE3D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81CE0EF1-0741-48ED-843A-C5716DFE3D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81CE0EF1-0741-48ED-843A-C5716DFE3D58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OrderManagerHost.Models
+namespace OrderManager.WebApi.Models
 {
     public class CreateOrderRequestModel
     {

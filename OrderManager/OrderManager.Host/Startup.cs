@@ -1,18 +1,12 @@
-using System.Linq;
-using System.Reflection;
 using MassTransit;
-using MassTransit.NHibernateIntegration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using OrderManager.Business.Sagas;
-using NHibernate.Mapping.ByCode.Conformist;
-using OrderManager.Business.Observers;
 
-namespace OrderManagerHost
+namespace OrderManager.WebApi
 {
     public class Startup
     {
@@ -20,8 +14,6 @@ namespace OrderManagerHost
         {
             Configuration = configuration;
         }
-
-        string ConnectionString => this.Configuration.GetConnectionString("DefaultConnection");
 
         public IConfiguration Configuration { get; }
 
@@ -38,31 +30,11 @@ namespace OrderManagerHost
                 });
             });
 
-            var mappings = Assembly.Load("OrderManager.Business")
-                .GetTypes()
-                .Where(t => t.BaseType != null && t.BaseType.IsGenericType &&
-                    (t.BaseType.GetGenericTypeDefinition() == typeof(SagaClassMapping<>) ||
-                    t.BaseType.GetGenericTypeDefinition() == typeof(ClassMapping<>)))
-                .ToArray();
-            services.AddSingleton((cfg) => 
+            services.AddMassTransit(x =>
             {
-                return new SqlServerSessionFactoryProvider(ConnectionString, mappings).GetSessionFactory();
+                x.UsingRabbitMq();
             });
-            services.AddMassTransit(x => 
-            {
-                x.AddSagaStateMachine<OrderStateMachine, OrderSagaState>()
-                    .NHibernateRepository();
 
-                x.UsingRabbitMq((context, cfg) => 
-                {
-                    cfg.ConnectReceiveObserver(new ReceiveObserver());
-                    cfg.ReceiveEndpoint("event-listener", e => 
-                    {
-                        e.ConfigureSaga<OrderSagaState>(context);
-                    });
-                });
-            });
-            
             services.AddMassTransitHostedService();
         }
 
